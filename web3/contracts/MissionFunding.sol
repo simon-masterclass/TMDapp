@@ -2,6 +2,8 @@
 pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
+// @author simon-masterclass (github)
+
 contract MissionFunding {
     struct Campaign {
         string title;
@@ -129,7 +131,11 @@ contract MissionFunding {
         }
     }
 
-    function getDonators(uint256 _id) public view returns (address[] memory) {
+    function getDonators(uint256 _id)
+        public
+        view
+        returns (address[] memory, uint256[] memory)
+    {
         return (campaigns[_id].donators, campaigns[_id].donations);
     }
 
