@@ -53,7 +53,7 @@ contract MissionFunding {
                 root,
                 keccak256(abi.encodePacked(msg.sender))
             ) == true,
-            "Not allowed to create a campaign - not a valid merkle proof"
+            "Not allowed to create a campaign - not a valid merkle proof. Are you sure you are on the list?"
         );
         _;
     }
