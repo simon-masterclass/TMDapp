@@ -23,6 +23,7 @@ contract MissionFunding {
     uint256 public numberOfCampaigns = 0;
     address public missionCommander;
     bytes32 public root;
+    uint256 public TREASURE_CHEST;
 
     event CampaignCreated(
         uint256 id,
