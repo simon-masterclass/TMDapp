@@ -15,20 +15,21 @@ module.exports = {
       },
     },
   },
-  defaultNetwork: "goerli",
+  defaultNetwork: "localhost",
   networks: {
     hardhat: {},
-    development: {
-      host: "127.0.0.1",
-      port: 7545,
-      network_id: "*", // Match any network id
-    },
-    // rinkeby: {
-    //   url: `${process.env.NEXT_PUBLIC_ALCHEMY_RPC_URL}`,
-    //   accounts: [`0x${process.env.METAMASK_PRIVATE_KEY}`]
+    localhost: {},
+    // development: {
+    //   host: "127.0.0.1",
+    //   port: 7545,
+    //   network_id: "*", // Match any network id
+    // },
+    // goerli: {
+    //   url: `https://eth-goerli.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+    //   accounts: [`0x${process.env.METAMASK_PRIVATE_KEY}`],
     // },
     goerli: {
-      url: `https://eth-goerli.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      url: "https://rpc.ankr.com/eth_goerli",
       accounts: [`0x${process.env.METAMASK_PRIVATE_KEY}`],
     },
     // mumbai: {

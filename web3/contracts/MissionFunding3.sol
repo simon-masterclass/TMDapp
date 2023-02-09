@@ -4,7 +4,7 @@ import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 // @author simon-masterclass (github)
 
-contract MissionFunding {
+contract MissionFunding3 {
     struct Campaign {
         string title;
         string description;
@@ -19,12 +19,6 @@ contract MissionFunding {
         bool active;
     }
 
-    mapping(uint256 => Campaign) public campaigns;
-    uint256 public numberOfCampaigns = 0;
-    address public missionCommander;
-    bytes32 public root;
-    uint256 public TREASURY;
-
     event CampaignCreated(
         uint256 id,
         string title,
@@ -32,6 +26,7 @@ contract MissionFunding {
         string image,
         string globalGoalTargets,
         uint256 fundingTarget,
+        uint256 startline,
         uint256 deadline,
         address payable owner,
         bool active
@@ -43,6 +38,12 @@ contract MissionFunding {
         uint8 percent,
         address donator
     );
+
+    mapping(uint256 => Campaign) public campaigns;
+    uint256 public numberOfCampaigns = 0;
+    address public missionCommander;
+    bytes32 public root;
+    uint256 public TREASURY;
 
     modifier onlyMissionCommander() {
         require(
@@ -73,6 +74,9 @@ contract MissionFunding {
         root = merkleroot;
     }
 
+    // bytes32[] calldata _proof
+    // isValidMerkleProof(_proof)
+
     function createCampaign(
         string memory _title,
         string memory _description,
@@ -81,9 +85,8 @@ contract MissionFunding {
         uint256 _fundingTarget,
         uint256 _deadline,
         address _owner,
-        bool _active,
-        bytes32[] calldata _proof
-    ) public isValidMerkleProof(_proof) returns (uint256) {
+        bool _active
+    ) public returns (uint256) {
         require(
             _deadline > block.timestamp,
             "The deadline should be a date in the future"
@@ -109,6 +112,7 @@ contract MissionFunding {
             _image,
             _globalGoalTargets,
             _fundingTarget,
+            block.timestamp,
             _deadline,
             payable(_owner),
             _active
@@ -117,7 +121,7 @@ contract MissionFunding {
         return numberOfCampaigns;
     }
 
-    function donateToCampaign(uint256 _id, uint8 _percent) public payable {
+    function donateToCampaign(uint256 _id, uint8 _percent) internal {
         Campaign storage campaign = campaigns[_id];
         uint256 amount = (msg.value * _percent) / 100;
 
@@ -176,6 +180,10 @@ contract MissionFunding {
         returns (address[] memory, uint256[] memory)
     {
         return (campaigns[_id].donators, campaigns[_id].donations);
+    }
+
+    function getCampaign(uint256 _id) public view returns (Campaign memory) {
+        return campaigns[_id];
     }
 
     function getCampaigns() public view returns (Campaign[] memory) {

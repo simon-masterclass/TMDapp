@@ -15,7 +15,7 @@ const whitelist = require("./whitelist.js");
 async function main() {
   const nftFactory = await hre.ethers.getContractFactory("MissionFunding");
   const nftContract = await nftFactory.attach(
-    "0x5C91A77d1A14B138AeB7c4f25969568CC09bf190" // Deployed contract address
+    "0x49CfDDE20da7f1760e90FF932fb7a43678A3D729" // Deployed contract address
   );
 
   // Re-calculate merkle root from the whitelist array.

@@ -26,7 +26,7 @@ async function main() {
   const root = merkleTree.getRoot();
 
   await hre.run("verify:verify", {
-    address: "0x5C91A77d1A14B138AeB7c4f25969568CC09bf190", // Deployed contract address - OLD-rinkeby: 0x0312e42e4b55823a3C41769DC0B07F382dECc247
+    address: "0x49CfDDE20da7f1760e90FF932fb7a43678A3D729", // Deployed contract address - OLD-rinkeby: 0x0312e42e4b55823a3C41769DC0B07F382dECc247
     constructorArguments: [MissionCommanderAddr, root], // Constructor arguments
   });
 }
