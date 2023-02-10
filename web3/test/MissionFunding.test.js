@@ -193,7 +193,7 @@ describe("MissionFunding3 TMD tests:", () => {
       // 19% of 100 wei to campaign[2]
       // 19% of 100 wei to campaign[3]
       // 19% of 100 wei to campaign[4]
-      const tx = await missionFundingContract.TMDonationSTG(
+      await missionFundingContract.TMDonationSTG(
         0,
         20,
         1,
@@ -237,7 +237,7 @@ describe("MissionFunding3 TMD tests:", () => {
       // 19% of 100 wei to campaign[2]
       // 19% of 100 wei to campaign[0]
       // 19% of 100 wei to campaign[4]
-      const tx = await missionFundingContract.TMDonationSTG(
+      await missionFundingContract.TMDonationSTG(
         0,
         20,
         1,
