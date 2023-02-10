@@ -74,8 +74,8 @@ contract MissionFunding3 {
         bytes32 _merkleroot
     ) {
         missionCommander = _missionCommander;
-        root = _merkleroot;
         TREASURY = _treasury;
+        root = _merkleroot;
     }
 
     function setMerkleRoot(bytes32 merkleroot) public onlyMissionCommander {
@@ -207,52 +207,33 @@ contract MissionFunding3 {
         require(msg.value > 0, "You need to send some Money, C0.");
 
         if (_id0 == _id1 || _id0 == _id2 || _id0 == _id3 || _id0 == _id4) {
-            uint256 id_1;
-            uint256 id_2;
-            uint256 id_3;
             uint8 percent_0;
-            uint8 percent_1;
-            uint8 percent_2;
-            uint8 percent_3;
 
             if (_id0 == _id1) {
                 percent_0 = _percent0 + _percent1;
-                id_1 = _id2;
-                percent_1 = _percent2;
-                id_2 = _id3;
-                percent_2 = _percent3;
-                id_3 = _id4;
-                percent_3 = _percent4;
+                donateToCampaign(_id0, percent_0);
+                donateToCampaign(_id2, _percent2);
+                donateToCampaign(_id3, _percent3);
+                donateToCampaign(_id4, _percent4);
             } else if (_id0 == _id2) {
                 percent_0 = _percent0 + _percent2;
-                id_1 = _id1;
-                percent_1 = _percent1;
-                id_2 = _id3;
-                percent_2 = _percent3;
-                id_3 = _id4;
-                percent_3 = _percent4;
+                donateToCampaign(_id0, percent_0);
+                donateToCampaign(_id1, _percent1);
+                donateToCampaign(_id3, _percent3);
+                donateToCampaign(_id4, _percent4);
             } else if (_id0 == _id3) {
                 percent_0 = _percent0 + _percent3;
-                id_1 = _id1;
-                percent_1 = _percent1;
-                id_2 = _id2;
-                percent_2 = _percent2;
-                id_3 = _id4;
-                percent_3 = _percent4;
+                donateToCampaign(_id0, percent_0);
+                donateToCampaign(_id1, _percent1);
+                donateToCampaign(_id2, _percent2);
+                donateToCampaign(_id4, _percent4);
             } else if (_id0 == _id4) {
                 percent_0 = _percent0 + _percent4;
-                id_1 = _id1;
-                percent_1 = _percent1;
-                id_2 = _id2;
-                percent_2 = _percent2;
-                id_3 = _id3;
-                percent_3 = _percent3;
+                donateToCampaign(_id0, percent_0);
+                donateToCampaign(_id1, _percent1);
+                donateToCampaign(_id2, _percent2);
+                donateToCampaign(_id3, _percent3);
             }
-
-            donateToCampaign(_id0, percent_0);
-            donateToCampaign(id_1, percent_1);
-            donateToCampaign(id_2, percent_2);
-            donateToCampaign(id_3, percent_3);
         } else {
             donateToCampaign(_id0, _percent0);
             donateToCampaign(_id1, _percent1);

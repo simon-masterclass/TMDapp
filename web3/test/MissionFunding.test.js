@@ -32,10 +32,12 @@ describe("MissionFunding3 TMD tests:", () => {
     donator_8 = accounts[8];
     donator_9 = accounts[9];
     donator_10 = accounts[10];
+    TREASURY = accounts[11];
 
     const MissionFunding = await ethers.getContractFactory("MissionFunding3");
     const missionFunding = await MissionFunding.deploy(
       missionCommander.address,
+      TREASURY.address,
       "0x3db289f424d3fdfa8b6282a35ae6b64c3850aceb89ff8bc6897a11c3f24a9381"
     );
     missionFundingContract = await missionFunding.deployed();
@@ -222,14 +224,69 @@ describe("MissionFunding3 TMD tests:", () => {
       // Fifth Donation to Campaign 4
       let campaign4 = await missionFundingContract.getCampaign(4);
       expect(campaign4.donations[0]).to.eq(19);
+      // Treasury balance should be 4 wei
+      let treasuryBalance =
+        await missionFundingContract.TREASURY_TOTAL_COLLECTED();
+      expect(treasuryBalance).to.eq(4);
     });
 
-    // it("should...", async () => {
-    //   // console.log("Ve made it to the test");
-    //   expect(await missionFundingContract.root()).to.eq(
-    //     "0x3db289f424d3fdfa8b6282a35ae6b64c3850aceb89ff8bc6897a11c3f24a9381"
-    //   );
-    // });
+    it("should accept duplicate campaign donations correctly", async () => {
+      // Donate to 4 campaigns (1 duplicate):
+      // 20% of 100 wei to campaign[0]
+      // 19% of 100 wei to campaign[1]
+      // 19% of 100 wei to campaign[2]
+      // 19% of 100 wei to campaign[0]
+      // 19% of 100 wei to campaign[4]
+      const tx = await missionFundingContract.TMDonationSTG(
+        0,
+        20,
+        1,
+        19,
+        2,
+        19,
+        0,
+        19,
+        4,
+        19,
+        { from: missionCommander.address, value: 100 }
+      );
+
+      // First Donation to Campaign 0
+      let campaign0 = await missionFundingContract.getCampaign(0);
+      expect(campaign0.donations[0]).to.eq(39);
+      // Check mission commander address is in donators array
+      expect(campaign0.donators[0]).to.eq(missionCommander.address);
+      // Second Donation to Campaign 1
+      let campaign1 = await missionFundingContract.getCampaign(1);
+      expect(campaign1.donations[0]).to.eq(19);
+      // Third Donation to Campaign 2
+      let campaign2 = await missionFundingContract.getCampaign(2);
+      expect(campaign2.donations[0]).to.eq(19);
+      // Fourth Donation to Campaign 3
+      let campaign3 = await missionFundingContract.getCampaign(3);
+      expect(campaign3.donations[0]).to.be.undefined;
+      // Fifth Donation to Campaign 4
+      let campaign4 = await missionFundingContract.getCampaign(4);
+      expect(campaign4.donations[0]).to.eq(19);
+      // Treasury balance should be 4 wei
+      let treasuryBalance =
+        await missionFundingContract.TREASURY_TOTAL_COLLECTED();
+      expect(treasuryBalance).to.eq(4);
+    });
+
+    it("should be able to donate to a campaign directly", async () => {
+      // console.log("Ve made it to the test");
+      await missionFundingContract.donateToCampaignDirectly(0, {
+        from: missionCommander.address,
+        value: 100,
+      });
+      let campaign0 = await missionFundingContract.getCampaign(0);
+      expect(campaign0.donations[0]).to.eq(96);
+      // Treasury balance should be 4 wei
+      let treasuryBalance =
+        await missionFundingContract.TREASURY_TOTAL_COLLECTED();
+      expect(treasuryBalance).to.eq(4);
+    });
     // it("should...", async () => {
     //   // console.log("Ve made it to the test");
     //   expect(await missionFundingContract.root()).to.eq(
