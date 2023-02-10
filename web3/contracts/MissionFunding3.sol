@@ -40,10 +40,13 @@ contract MissionFunding3 {
     );
 
     mapping(uint256 => Campaign) public campaigns;
+
     uint256 public numberOfCampaigns = 0;
     address public missionCommander;
+    address public TREASURY;
+    uint8 public TREASURY_PERCENT = 4;
+    uint256 public TREASURY_TOTAL_COLLECTED;
     bytes32 public root;
-    uint256 public TREASURY;
 
     modifier onlyMissionCommander() {
         require(
@@ -60,14 +63,19 @@ contract MissionFunding3 {
                 root,
                 keccak256(abi.encodePacked(msg.sender))
             ) == true,
-            "Not allowed to create a campaign - not a valid merkle proof. Are you sure you are on the list?"
+            "Not allowed to create a campaign. Are you sure you're on the list?"
         );
         _;
     }
 
-    constructor(address _missionCommander, bytes32 _merkleroot) {
+    constructor(
+        address _missionCommander,
+        address _treasury,
+        bytes32 _merkleroot
+    ) {
         missionCommander = _missionCommander;
         root = _merkleroot;
+        TREASURY = _treasury;
     }
 
     function setMerkleRoot(bytes32 merkleroot) public onlyMissionCommander {
@@ -89,7 +97,7 @@ contract MissionFunding3 {
     ) public returns (uint256) {
         require(
             _deadline > block.timestamp,
-            "The deadline should be a date in the future"
+            "The deadline should be a date in the future, Commander."
         );
 
         campaigns[numberOfCampaigns] = Campaign(
@@ -121,13 +129,46 @@ contract MissionFunding3 {
         return numberOfCampaigns;
     }
 
+    function donateToCampaignDirectly(uint256 _id) public payable {
+        Campaign storage campaign = campaigns[_id];
+        uint256 amount = (msg.value * (100 - TREASURY_PERCENT)) / 100;
+
+        require(campaign.active, "Campaign is not active anymore, C0.");
+        require(campaign.deadline > block.timestamp, "Campaign is over, C0.");
+        require(amount > 0, "You need to send some Money, C0.");
+
+        campaign.donators.push(msg.sender);
+        campaign.donations.push(amount);
+
+        (bool sent, ) = payable(campaign.owner).call{value: amount}("");
+        if (sent) {
+            campaign.amountCollected += amount;
+            emit CampaignFunded(
+                _id,
+                amount,
+                (100 - TREASURY_PERCENT),
+                msg.sender
+            );
+        } else {
+            revert("Failed to send Money.");
+        }
+
+        uint256 Treasury_amount = msg.value - amount;
+        (bool sent2, ) = payable(TREASURY).call{value: Treasury_amount}("");
+        if (sent2) {
+            TREASURY_TOTAL_COLLECTED += Treasury_amount;
+        } else {
+            revert("Failed to send Money to Treasury.");
+        }
+    }
+
     function donateToCampaign(uint256 _id, uint8 _percent) internal {
         Campaign storage campaign = campaigns[_id];
         uint256 amount = (msg.value * _percent) / 100;
 
-        require(campaign.active, "Campaign is not active anymore.");
-        require(campaign.deadline > block.timestamp, "Campaign is over.");
-        require(amount > 0, "You need to send some Money.");
+        require(campaign.active, "Campaign is not active anymore, C0.");
+        require(campaign.deadline > block.timestamp, "Campaign is over, C0.");
+        require(amount > 0, "You need to send some Money, C0.");
 
         campaign.donators.push(msg.sender);
         campaign.donations.push(amount);
@@ -142,6 +183,8 @@ contract MissionFunding3 {
     }
 
     function TMDonationSTG(
+        uint256 _id0,
+        uint8 _percent0,
         uint256 _id1,
         uint8 _percent1,
         uint256 _id2,
@@ -149,29 +192,82 @@ contract MissionFunding3 {
         uint256 _id3,
         uint8 _percent3,
         uint256 _id4,
-        uint8 _percent4,
-        uint256 _id5,
-        uint8 _percent5
+        uint8 _percent4
     ) public payable {
-        uint8 TREASURY_PERCENT = 4;
-
         require(
-            _percent1 +
+            _percent0 +
+                _percent1 +
                 _percent2 +
                 _percent3 +
                 _percent4 +
-                _percent5 +
                 TREASURY_PERCENT ==
                 100,
             "Percentages must add up to 100"
         );
-        require(msg.value > 0, "You need to send some Money.");
+        require(msg.value > 0, "You need to send some Money, C0.");
 
-        donateToCampaign(_id1, _percent1);
-        donateToCampaign(_id2, _percent2);
-        donateToCampaign(_id3, _percent3);
-        donateToCampaign(_id4, _percent4);
-        donateToCampaign(_id5, _percent5);
+        if (_id0 == _id1 || _id0 == _id2 || _id0 == _id3 || _id0 == _id4) {
+            uint256 id_1;
+            uint256 id_2;
+            uint256 id_3;
+            uint8 percent_0;
+            uint8 percent_1;
+            uint8 percent_2;
+            uint8 percent_3;
+
+            if (_id0 == _id1) {
+                percent_0 = _percent0 + _percent1;
+                id_1 = _id2;
+                percent_1 = _percent2;
+                id_2 = _id3;
+                percent_2 = _percent3;
+                id_3 = _id4;
+                percent_3 = _percent4;
+            } else if (_id0 == _id2) {
+                percent_0 = _percent0 + _percent2;
+                id_1 = _id1;
+                percent_1 = _percent1;
+                id_2 = _id3;
+                percent_2 = _percent3;
+                id_3 = _id4;
+                percent_3 = _percent4;
+            } else if (_id0 == _id3) {
+                percent_0 = _percent0 + _percent3;
+                id_1 = _id1;
+                percent_1 = _percent1;
+                id_2 = _id2;
+                percent_2 = _percent2;
+                id_3 = _id4;
+                percent_3 = _percent4;
+            } else if (_id0 == _id4) {
+                percent_0 = _percent0 + _percent4;
+                id_1 = _id1;
+                percent_1 = _percent1;
+                id_2 = _id2;
+                percent_2 = _percent2;
+                id_3 = _id3;
+                percent_3 = _percent3;
+            }
+
+            donateToCampaign(_id0, percent_0);
+            donateToCampaign(id_1, percent_1);
+            donateToCampaign(id_2, percent_2);
+            donateToCampaign(id_3, percent_3);
+        } else {
+            donateToCampaign(_id0, _percent0);
+            donateToCampaign(_id1, _percent1);
+            donateToCampaign(_id2, _percent2);
+            donateToCampaign(_id3, _percent3);
+            donateToCampaign(_id4, _percent4);
+        }
+
+        uint256 Treasury_amount = (msg.value * TREASURY_PERCENT) / 100;
+        (bool sent, ) = payable(TREASURY).call{value: Treasury_amount}("");
+        if (sent) {
+            TREASURY_TOTAL_COLLECTED += Treasury_amount;
+        } else {
+            revert("Failed to send Money to Treasury.");
+        }
     }
 
     function getDonators(uint256 _id)
@@ -186,7 +282,7 @@ contract MissionFunding3 {
         return campaigns[_id];
     }
 
-    function getCampaigns() public view returns (Campaign[] memory) {
+    function getAllCampaigns() public view returns (Campaign[] memory) {
         Campaign[] memory allCampaigns = new Campaign[](numberOfCampaigns);
         for (uint256 i = 0; i < numberOfCampaigns; i++) {
             Campaign storage item = campaigns[i];
