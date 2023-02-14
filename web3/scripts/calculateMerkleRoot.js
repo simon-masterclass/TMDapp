@@ -16,6 +16,7 @@ async function main() {
 
   console.log("Whitelist Merkle root set to:", root);
 
+  // Address below must be an address in the whitelist array in order to generate a valid proof - console.log...
   const leaf = keccak256("0x391d4ae8f784bDf4Ff93cEe6ef4444f4cBc2B03A");
   const proof = merkleTree.getHexProof(leaf);
 

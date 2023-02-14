@@ -15,7 +15,7 @@ module.exports = {
       },
     },
   },
-  defaultNetwork: "localhost",
+  defaultNetwork: "goerli",
   networks: {
     hardhat: {},
     localhost: {},
