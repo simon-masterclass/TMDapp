@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.9; //change to 0.8.16 to avoid compiler warning = AbiReencodingHeadOverflowWithStaticArrayCleanup?
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 // @author simon-masterclass (github)

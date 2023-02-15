@@ -12,10 +12,12 @@ const { MerkleTree } = require("merkletreejs");
 const keccak256 = require("keccak256");
 const whitelist = require("./whitelist.js");
 
+const TMD_CONTRACT_ADDRESS = "0x95c7Ba15758AeBF3A41CE9999F19E9914398e414"; // Latest contract address - update as needed
+
 async function main() {
   const nftFactory = await hre.ethers.getContractFactory("MissionFunding");
   const nftContract = await nftFactory.attach(
-    "0x49CfDDE20da7f1760e90FF932fb7a43678A3D729" // Deployed contract address
+    TMD_CONTRACT_ADDRESS // Deployed contract address
   );
 
   // Re-calculate merkle root from the whitelist array.

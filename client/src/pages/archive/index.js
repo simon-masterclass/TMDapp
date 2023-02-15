@@ -1,19 +1,18 @@
 import { ConnectWallet } from "@thirdweb-dev/react";
-import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="http://thirdweb.com/">thirdweb</a>!
+          Welcome to <a href="https://thirdweb.com/">thirdweb</a>!
         </h1>
 
         <p className={styles.description}>
           Get started by configuring your desired network in{" "}
-          <code className={styles.code}>pages/_app.tsx</code>, then modify the{" "}
-          <code className={styles.code}>pages/index.tsx</code> file!
+          <code className={styles.code}>pages/_app.js</code>, then modify the{" "}
+          <code className={styles.code}>pages/index.js</code> file!
         </p>
 
         <div className={styles.connect}>
@@ -50,6 +49,4 @@ const Home: NextPage = () => {
       </main>
     </div>
   );
-};
-
-export default Home;
+}
