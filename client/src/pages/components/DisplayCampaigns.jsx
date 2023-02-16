@@ -5,7 +5,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import FundCard from "./FundCard";
-import { loader } from "../assets";
+import { loader } from "../../../public/assets/index";
 
 const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
   const router = useRouter();

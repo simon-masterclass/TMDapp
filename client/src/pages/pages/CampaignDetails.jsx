@@ -8,7 +8,7 @@ import { ethers } from "ethers";
 import { useStateContext } from "../context";
 import { CountBox, CustomButton, Loader } from "../components";
 import { calculateBarPercentage, daysLeft } from "../utils";
-import { thirdweb } from "../assets";
+import { thirdweb } from "../../../public/assets/index";
 
 const CampaignDetails = () => {
   // const { state } = useLocation();

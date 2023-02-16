@@ -5,10 +5,18 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { logo, sun } from "../assets";
+import { logo, sun } from "../../../public/assets";
 import { navlinks } from "../constants";
 
-const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
+const Icon = ({
+  styles,
+  name,
+  imgUrl,
+  altTxt,
+  isActive,
+  disabled,
+  handleClick,
+}) => (
   <div
     className={`w-[48px] h-[48px] rounded-[10px] ${
       isActive && isActive === name && "bg-[#2c2f32]"
@@ -19,13 +27,13 @@ const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
     {!isActive ? (
       <img
         src={imgUrl}
-        alt="fund_logo"
+        alt={altTxt}
         className="w-1/2 h-1/2"
       />
     ) : (
       <img
         src={imgUrl}
-        alt="fund_logo"
+        alt={altTxt}
         className={`w-1/2 h-1/2 ${isActive !== name && "grayscale"}`}
       />
     )}
@@ -42,6 +50,7 @@ const Sidebar = () => {
         <Icon
           styles="w-[52px] h-[52px] bg-[#2c2f32]"
           imgUrl={logo}
+          altTxt="logo"
         />
       </Link>
 
@@ -65,6 +74,7 @@ const Sidebar = () => {
         <Icon
           styles="bg-[#1c1c24] shadow-secondary"
           imgUrl={sun}
+          altTxt="sun"
         />
       </div>
     </div>
