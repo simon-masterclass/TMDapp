@@ -3,13 +3,19 @@
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import "../styles/globals.css";
 
+import { StateContextProvider } from "./context";
+import TMDapp from "./index";
+
 // This is the chainId your dApp will work on.
 const activeChainId = ChainId.Goerli;
 
 function MyApp({ Component, pageProps }) {
   return (
     <ThirdwebProvider desiredChainId={activeChainId}>
-      <Component {...pageProps} />
+      <StateContextProvider>
+        {/* <Component {...pageProps} /> */}
+        <TMDapp />
+      </StateContextProvider>
     </ThirdwebProvider>
   );
 }
