@@ -1,10 +1,11 @@
 /** @format */
+// Used to be called DisplayCampaigns.jsx... now index.js
 
 import React from "react";
 //import { useNavigate } from 'react-router-dom';
 import { useRouter } from "next/router";
 
-import FundCard from "./FundCard";
+import FundCard from "../components/FundCard";
 import { loader } from "../../../public/assets/index";
 
 const DisplayCampaigns = ({ title, isLoading, campaigns }) => {

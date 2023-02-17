@@ -20,7 +20,7 @@ export const navlinks = [
     name: "campaign",
     imgUrl: createCampaign,
     altTxt: "create campaign",
-    link: "/create-campaign",
+    link: "create-campaign",
   },
   {
     name: "payment",
@@ -40,7 +40,7 @@ export const navlinks = [
     name: "profile",
     imgUrl: profile,
     altTxt: "profile",
-    link: "/profile",
+    link: "zero/profile",
   },
   {
     name: "logout",

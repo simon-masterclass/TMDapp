@@ -1,7 +1,8 @@
 /** @format */
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { ethers } from "ethers";
 
 import { useStateContext } from "./context";
@@ -10,7 +11,8 @@ import { CustomButton, FormField, Loader } from "./components";
 import { checkIfImage } from "./utils";
 
 const CreateCampaign = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const { createCampaign } = useStateContext();
   const [form, setForm] = useState({
@@ -37,7 +39,7 @@ const CreateCampaign = () => {
           target: ethers.utils.parseUnits(form.target, 18),
         });
         setIsLoading(false);
-        navigate("/");
+        router.push("/");
       } else {
         alert("Provide valid image URL");
         setForm({ ...form, image: "" });
