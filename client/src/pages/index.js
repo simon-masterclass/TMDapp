@@ -1,16 +1,4 @@
-/** @format */
-
-import React from "react";
-// import { Route, Routes } from "react-router-dom";
-
-// import { CampaignDetails, CreateCampaign, Home, Profile } from "./pages";
-
-const TMDapp = () => {
-  return (
-    <>
-      <h1 className="text-2xl text-white">INDEX MAIN</h1>
-    </>
-  );
-};
-
-export default TMDapp;
+export { default as Home } from './Home';
+export { default as Profile } from './Profile';
+export { default as CreateCampaign } from './CreateCampaign';
+export { default as CampaignDetails } from './CampaignDetails';
