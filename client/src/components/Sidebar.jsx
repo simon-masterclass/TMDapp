@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { logo, sun, zarmy100x100, zarmy50x50 } from "../assets";
 import { navlinks } from "../constants";
+import "../index.css";
 
 const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
   <div
@@ -37,9 +38,9 @@ const Sidebar = () => {
   return (
     <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
       <Link to="/">
-        <div className="w-[107px] h-[107px] bg-[#2c2f32] rounded-full flex justify-center items-center cursor-pointer">
+        <div className="w-[106px] h-[106px] bg-[#2c2f32] rounded-full flex justify-center items-center cursor-pointer">
           <img
-            className="rounded-full object-contain" // bg-[#2c2f32]
+            className="opacity-95 rounded-full justify-center object-contain" // bg-[#2c2f32]
             src={zarmy100x100}
           />
         </div>
