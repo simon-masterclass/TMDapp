@@ -7,7 +7,15 @@ import { logo, sun, zarmy100x100, zarmy50x50 } from "../assets";
 import { navlinks } from "../constants";
 import "../index.css";
 
-const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
+const Icon = ({
+  styles,
+  name,
+  imgUrl,
+  altxt,
+  isActive,
+  disabled,
+  handleClick,
+}) => (
   <div
     className={`w-[48px] h-[48px] rounded-[10px] ${
       isActive && isActive === name && "bg-[#2c2f32]"
@@ -18,13 +26,13 @@ const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
     {!isActive ? (
       <img
         src={imgUrl}
-        alt="fund_logo"
+        alt={altxt}
         className="w-1/2 h-1/2"
       />
     ) : (
       <img
         src={imgUrl}
-        alt="fund_logo"
+        alt={altxt}
         className={`w-1/2 h-1/2 ${isActive !== name && "grayscale"}`}
       />
     )}

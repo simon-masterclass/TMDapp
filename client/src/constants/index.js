@@ -1,37 +1,66 @@
-import { createCampaign, dashboard, logout, payment, profile, withdraw } from '../assets';
+/** @format */
+
+import {
+  createCampaign,
+  dashboard,
+  logout,
+  payment,
+  profile,
+  withdraw,
+  zero,
+  colorcoins,
+  home,
+} from "../assets";
 
 export const navlinks = [
   {
-    name: 'dashboard',
+    name: "homebase",
+    imgUrl: home,
+    altxt: "homebase",
+    link: "/",
+  },
+  {
+    name: "dashboard",
     imgUrl: dashboard,
-    link: '/',
+    altxt: "dashboard",
+    link: "/",
   },
   {
-    name: 'campaign',
-    imgUrl: createCampaign,
-    link: '/create-campaign',
+    name: "treasury",
+    imgUrl: colorcoins,
+    altxt: "treasury",
+    link: "/",
   },
+  // {
+  //   name: "payment",
+  //   imgUrl: payment,
+  //   link: "/",
+  //   disabled: true,
+  // },
+  // {
+  //   name: "withdraw",
+  //   imgUrl: withdraw,
+  //   altxt: "withdraw",
+  //   link: "/",
+  //   disabled: true,
+  // },
   {
-    name: 'payment',
-    imgUrl: payment,
-    link: '/',
-    disabled: true,
-  },
-  {
-    name: 'withdraw',
-    imgUrl: withdraw,
-    link: '/',
-    disabled: true,
-  },
-  {
-    name: 'profile',
+    name: "profile",
     imgUrl: profile,
-    link: '/profile',
+    altxt: "profile",
+    link: "/profile",
   },
   {
-    name: 'logout',
-    imgUrl: logout,
-    link: '/',
-    disabled: true,
+    name: "campaign",
+    imgUrl: createCampaign,
+    altxt: "campaign",
+    link: "/create-campaign",
   },
+  // {
+  //   name: "logout",
+  //   imgUrl: logout,
+  //   altxt: "logout",
+  //   link: "/",
+  //   disabled: true,
+  // },
 ];

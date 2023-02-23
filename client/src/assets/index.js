@@ -16,6 +16,9 @@ import loader from "./loader.svg";
 import thirdweb from "./thirdweb.png";
 import zarmy100x100 from "./zarmy100x100.png";
 import zarmy50x50 from "./zarmy50x50.png";
+import zero from "./zero.svg";
+import colorcoins from "./colorcoins.svg";
+import home from "./home.svg";
 
 export {
   tagType,
@@ -34,4 +37,7 @@ export {
   thirdweb,
   zarmy100x100,
   zarmy50x50,
+  zero,
+  colorcoins,
+  home,
 };
