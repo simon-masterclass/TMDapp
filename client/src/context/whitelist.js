@@ -13,7 +13,8 @@
  * @format
  */
 
-module.exports = [
+// module.exports
+export const whitelist = [
   "0x9247a564968B69A11BceECbe5A2daDCEB43646FC", //Bootcamp 0
   "0x391d4ae8f784bDf4Ff93cEe6ef4444f4cBc2B03A", //Bootcamp 1
   "0x9170b78B33A0dC78d1f62eeD46E1B224290D8156", //Bootcamp Tester

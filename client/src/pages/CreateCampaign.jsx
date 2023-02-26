@@ -35,7 +35,7 @@ const CreateCampaign = () => {
         setIsLoading(true);
         await createCampaign({
           ...form,
-          fundingtarget: ethers.utils.parseUnits(form.target, 18),
+          fundingtarget: ethers.utils.parseUnits(form.fundingtarget, 18),
         });
         setIsLoading(false);
         navigate("/");
@@ -96,13 +96,6 @@ const CreateCampaign = () => {
 
         <div className="flex flex-wrap gap-[40px]">
           <FormField
-            labelName="Global Goal Targets *"
-            placeholder="SDG 1.1.1, SDG 2.2.2"
-            inputType="text"
-            value={form.globalgoaltargets}
-            handleChange={(e) => handleFormFieldChange("globalgoaltargets", e)}
-          />
-          <FormField
             labelName="Fundraiser Goal *"
             placeholder="ETH 0.50"
             inputType="text"
@@ -117,6 +110,14 @@ const CreateCampaign = () => {
             handleChange={(e) => handleFormFieldChange("deadline", e)}
           />
         </div>
+
+        <FormField
+          labelName="Global Goal Targets *"
+          placeholder="SDG 1.1.1, SDG 2.2.2"
+          inputType="text"
+          value={form.globalgoaltargets}
+          handleChange={(e) => handleFormFieldChange("globalgoaltargets", e)}
+        />
 
         <FormField
           labelName="Campaign image *"

@@ -10,15 +10,17 @@ import {
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import { EditionMetadataWithOwnerOutputSchema } from "@thirdweb-dev/sdk";
+import { MerkleTree } from "merkletreejs";
 // import { whitelist } from "../whitelist.js";
 
 const StateContext = createContext();
 
 // const { MerkleTree } = require("merkletreejs");
-// const keccak256 = require("keccak256");
-// const whitelist = require("../whitelist.js");
-// const leafNodes = whitelist.map((addr) => keccak256(addr));
-// const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+import keccak256 from "keccak256";
+import { whitelist } from "./whitelist.js";
+
+const leafNodes = whitelist.map((addr) => keccak256(addr));
+const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
 
 export const StateContextProvider = ({ children }) => {
   const { contract } = useContract(
@@ -33,19 +35,19 @@ export const StateContextProvider = ({ children }) => {
   const connect = useMetamask();
 
   const publishCampaign = async (form) => {
-    // const leaf = keccak256(address);
-    // const proof = merkleTree.getHexProof(leaf);
-    // const root = merkleTree.getHexRoot();
+    const leaf = keccak256(address);
+    const proof = merkleTree.getHexProof(leaf);
+    const root = merkleTree.getHexRoot();
 
-    // // Verify Merkle Proof
-    // const isValid = merkleTree.verify(proof, leaf, root);
+    // Verify Merkle Proof
+    const isValid = merkleTree.verify(proof, leaf, root);
 
-    // if (!isValid) {
-    //   return {
-    //     success: false,
-    //     status: "Invalid Merkle Proof - You are not on the whitelist",
-    //   };
-    // }
+    if (!isValid) {
+      return {
+        success: false,
+        status: "Invalid Merkle Proof - You are not on the whitelist",
+      };
+    }
 
     try {
       const data = await createCampaign([
