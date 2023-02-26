@@ -57,8 +57,8 @@ export const StateContextProvider = ({ children }) => {
         form.globalgoaltargets, // globalgoaltargets
         form.fundingtarget,
         new Date(form.deadline).getTime(), // deadline,
-        true, // isActive
         address, // owner
+        true, // isActive
         proof, // proof
       ]);
 
@@ -71,12 +71,16 @@ export const StateContextProvider = ({ children }) => {
   const getCampaigns = async () => {
     const campaigns = await contract.call("getAllCampaigns");
 
+    console.log(campaigns);
+
     const parsedCampaings = campaigns.map((campaign, i) => ({
       owner: campaign.owner,
       title: campaign.title,
       description: campaign.description,
-      globalgoaltargets: campaign.globalgoaltargets,
-      fundingtarget: ethers.utils.formatEther(campaign.target.toString()),
+      globalgoaltargets: campaign.globalGoalTargets,
+      fundingTarget: ethers.utils.formatEther(
+        campaign.fundingTarget.toString()
+      ),
       deadline: campaign.deadline.toNumber(),
       amountCollected: ethers.utils.formatEther(
         campaign.amountCollected.toString()
