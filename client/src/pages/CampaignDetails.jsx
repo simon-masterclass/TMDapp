@@ -166,11 +166,12 @@ const CampaignDetails = () => {
 
               <div className="my-[20px] p-4 bg-[#13131a] rounded-[10px]">
                 <h4 className="font-epilogue font-semibold text-[14px] leading-[22px] text-white">
-                  Back it because you believe in it.
+                  Back it if the project seems likely to advance the global
+                  goal.
                 </h4>
                 <p className="mt-[20px] font-epilogue font-normal leading-[22px] text-[#808191]">
-                  Support the project for no reward, just because it speaks to
-                  you.
+                  Your contribution will help us move the project forward,
+                  getting us one step closer to our goal - Z3R0 Stunting.
                 </p>
               </div>
 
