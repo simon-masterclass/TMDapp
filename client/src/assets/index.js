@@ -19,6 +19,7 @@ import zarmy50x50 from "./zarmy50x50.png";
 import zero from "./zero.svg";
 import colorcoins from "./colorcoins.svg";
 import home from "./home.svg";
+import target from "./target.svg";
 
 export {
   tagType,
@@ -40,4 +41,5 @@ export {
   zero,
   colorcoins,
   home,
+  target,
 };
