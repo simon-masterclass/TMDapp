@@ -106,6 +106,14 @@ const CampaignDetails = () => {
           </div>
 
           <div>
+            <div className="mt-[20px]">
+              <p className="font-epilogue font-bold text-[16px] text-[#808191] leading-[26px] text-justify">
+                Global Goal Target(s): {state.globalgoaltargets}
+              </p>
+            </div>
+          </div>
+
+          <div>
             <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
               Story
             </h4>
