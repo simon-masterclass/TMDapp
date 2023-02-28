@@ -43,10 +43,10 @@ export const StateContextProvider = ({ children }) => {
     const isValid = merkleTree.verify(proof, leaf, root);
 
     if (!isValid) {
-      return {
-        success: false,
-        status: "Invalid Merkle Proof - You are not on the whitelist",
-      };
+      alert(
+        "Invalid Merkle Proof - this wallet address is not allowed to create a campaign. Are you sure you're on the list?"
+      ); // display error message popup
+      return;
     }
 
     try {
