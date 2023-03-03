@@ -50,17 +50,6 @@ const CampaignDetails = () => {
             alt="campaign"
             className="w-full h-[410px] object-cover rounded-xl"
           />
-          <div className="relative w-full h-[5px] bg-[#3a3a43] mt-2">
-            <div
-              className="absolute h-full bg-[#4acd8d]"
-              style={{
-                width: `${calculateBarPercentage(
-                  state.fundingTarget,
-                  state.amountCollected
-                )}%`,
-                maxWidth: "100%",
-              }}></div>
-          </div>
         </div>
 
         <div className="flex md:w-[150px] w-full flex-wrap justify-between gap-[30px]">
@@ -99,7 +88,7 @@ const CampaignDetails = () => {
                   {state.owner}
                 </h4>
                 <p className="mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]">
-                  10 Campaigns
+                  1 Campaigns
                 </p>
               </div>
             </div>
@@ -125,6 +114,17 @@ const CampaignDetails = () => {
             </div>
           </div>
 
+          <div className="relative w-full h-[11px] bg-[#3a3a43] mt-2">
+            <div
+              className="absolute h-full bg-[#4acd8d]"
+              style={{
+                width: `${calculateBarPercentage(
+                  state.fundingTarget,
+                  state.amountCollected
+                )}%`,
+                maxWidth: "100%",
+              }}></div>
+          </div>
           <div>
             <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
               Donators
