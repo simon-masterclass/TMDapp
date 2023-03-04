@@ -14,7 +14,7 @@ import {
 
 export const navlinks = [
   {
-    name: "homebase",
+    name: "Homebase",
     imgUrl: home,
     altxt: "homebase",
     link: "/",
@@ -26,7 +26,7 @@ export const navlinks = [
     link: "/campaigns",
   },
   {
-    name: "treasury",
+    name: "Treasury",
     imgUrl: colorcoins,
     altxt: "treasury",
     link: "/treasury",
@@ -45,13 +45,13 @@ export const navlinks = [
   //   disabled: true,
   // },
   {
-    name: "profile",
+    name: "Profile",
     imgUrl: profile,
     altxt: "profile",
     link: "/profile",
   },
   {
-    name: "campaign",
+    name: "Create Campaign",
     imgUrl: createCampaign,
     altxt: "campaign",
     link: "/create-campaign",
