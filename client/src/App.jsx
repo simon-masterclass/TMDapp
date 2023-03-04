@@ -10,7 +10,9 @@ import {
   CreateCampaign,
   Home,
   Profile,
+  Treasury,
 } from "./pages";
+// import Treasury from "./pages/Treasury";
 
 const App = () => {
   return (
@@ -29,12 +31,16 @@ const App = () => {
             element={<Home />}
           />
           <Route
-            path="/profile"
-            element={<Profile />}
-          />
-          <Route
             path="/campaigns"
             element={<Campaigns />}
+          />
+          <Route
+            path="/treasury"
+            element={<Treasury />}
+          />
+          <Route
+            path="/profile"
+            element={<Profile />}
           />
           <Route
             path="/create-campaign"

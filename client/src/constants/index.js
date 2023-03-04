@@ -29,7 +29,7 @@ export const navlinks = [
     name: "treasury",
     imgUrl: colorcoins,
     altxt: "treasury",
-    link: "/",
+    link: "/treasury",
   },
   // {
   //   name: "payment",

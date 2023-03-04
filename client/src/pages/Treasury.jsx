@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { DisplayCampaigns } from "../components";
 import { useStateContext } from "../context";
 
-const Home = () => {
+const Treasury = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
   const { state } = useLocation();
@@ -28,7 +28,7 @@ const Home = () => {
     <>
       <div>
         <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
-          Investing in Global Goals. <br /> Together.
+          Treasury
         </h4>
 
         <div className="mt-[20px]">
@@ -39,4 +39,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Treasury;
