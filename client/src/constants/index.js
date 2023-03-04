@@ -20,10 +20,10 @@ export const navlinks = [
     link: "/",
   },
   {
-    name: "dashboard",
+    name: "Campaigns",
     imgUrl: dashboard,
-    altxt: "dashboard",
-    link: "/",
+    altxt: "Campaigns",
+    link: "/campaigns",
   },
   {
     name: "treasury",

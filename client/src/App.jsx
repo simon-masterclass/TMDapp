@@ -4,7 +4,13 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { Sidebar, Navbar } from "./components";
-import { CampaignDetails, CreateCampaign, Home, Profile } from "./pages";
+import {
+  CampaignDetails,
+  Campaigns,
+  CreateCampaign,
+  Home,
+  Profile,
+} from "./pages";
 
 const App = () => {
   return (
@@ -25,6 +31,10 @@ const App = () => {
           <Route
             path="/profile"
             element={<Profile />}
+          />
+          <Route
+            path="/campaigns"
+            element={<Campaigns />}
           />
           <Route
             path="/create-campaign"
