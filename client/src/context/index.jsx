@@ -112,10 +112,12 @@ export const StateContextProvider = ({ children }) => {
   };
 
   const getTreasuryBalance = async () => {
-    // const data = await contract.call("TREASURY_TOTAL_COLLECTED");
-    const { data } = useContractRead(contract, "getAllCampaigns");
-    console.log(data);
-    return data;
+    const data = await contract.call("TREASURY_TOTAL_COLLECTED");
+    // const { data } = useContractRead(contract, "getAllCampaigns");
+    let balance = ethers.utils.formatEther(data.toString());
+    console.log(balance);
+
+    return balance;
   };
 
   const getDonations = async (pId) => {

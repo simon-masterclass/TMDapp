@@ -22,11 +22,17 @@ const Treasury = () => {
     setIsLoading(false);
   };
 
+  const fetchTreasuryBalance = async () => {
+    setIsLoading(true);
+    const balance = await getTreasuryBalance();
+    setTreasuryBalance(balance);
+    setIsLoading(false);
+  };
+
   useEffect(() => {
     if (contract) {
       fetchCampaigns();
-      //   let balance = getTreasuryBalance();
-      //   setTreasuryBalance(balance);
+      fetchTreasuryBalance();
     }
   }, [address, contract]);
 
@@ -34,12 +40,12 @@ const Treasury = () => {
     <>
       <div>
         <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
-          Treasury
+          Treasury Balance
         </h4>
 
         <div className="mt-[20px]">
           <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
-            {treasuryBalance}
+            {treasuryBalance} ETH
           </p>
         </div>
       </div>
