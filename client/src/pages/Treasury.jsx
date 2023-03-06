@@ -10,8 +10,10 @@ const Treasury = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
   const { state } = useLocation();
+  const [treasuryBalance, setTreasuryBalance] = useState(0);
 
-  const { address, contract, getCampaigns } = useStateContext();
+  const { address, contract, getCampaigns, getTreasuryBalance } =
+    useStateContext();
 
   const fetchCampaigns = async () => {
     setIsLoading(true);
@@ -21,7 +23,11 @@ const Treasury = () => {
   };
 
   useEffect(() => {
-    if (contract) fetchCampaigns();
+    if (contract) {
+      fetchCampaigns();
+      //   let balance = getTreasuryBalance();
+      //   setTreasuryBalance(balance);
+    }
   }, [address, contract]);
 
   return (
@@ -32,7 +38,9 @@ const Treasury = () => {
         </h4>
 
         <div className="mt-[20px]">
-          <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify"></p>
+          <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
+            {treasuryBalance}
+          </p>
         </div>
       </div>
     </>

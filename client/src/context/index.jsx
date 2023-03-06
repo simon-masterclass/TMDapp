@@ -6,6 +6,7 @@ import {
   useAddress,
   useContract,
   useMetamask,
+  useContractRead,
   useContractWrite,
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
@@ -73,7 +74,7 @@ export const StateContextProvider = ({ children }) => {
 
     console.log(campaigns);
 
-    const parsedCampaings = campaigns.map((campaign, i) => ({
+    const parsedCampaigns = campaigns.map((campaign, i) => ({
       owner: campaign.owner,
       title: campaign.title,
       description: campaign.description,
@@ -89,7 +90,7 @@ export const StateContextProvider = ({ children }) => {
       pId: i,
     }));
 
-    return parsedCampaings;
+    return parsedCampaigns;
   };
 
   const getUserCampaigns = async () => {
@@ -107,6 +108,13 @@ export const StateContextProvider = ({ children }) => {
       value: ethers.utils.parseEther(amount),
     });
 
+    return data;
+  };
+
+  const getTreasuryBalance = async () => {
+    // const data = await contract.call("TREASURY_TOTAL_COLLECTED");
+    const { data } = useContractRead(contract, "getAllCampaigns");
+    console.log(data);
     return data;
   };
 
@@ -137,6 +145,7 @@ export const StateContextProvider = ({ children }) => {
         getUserCampaigns,
         donate,
         getDonations,
+        getTreasuryBalance,
       }}>
       {children}
     </StateContext.Provider>
