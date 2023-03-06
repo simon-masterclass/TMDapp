@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { DisplayCampaigns } from "../components";
 import { useStateContext } from "../context";
 
 const Treasury = () => {
@@ -15,13 +14,6 @@ const Treasury = () => {
   const { address, contract, getCampaigns, getTreasuryBalance } =
     useStateContext();
 
-  const fetchCampaigns = async () => {
-    setIsLoading(true);
-    const data = await getCampaigns();
-    setCampaigns(data);
-    setIsLoading(false);
-  };
-
   const fetchTreasuryBalance = async () => {
     setIsLoading(true);
     const balance = await getTreasuryBalance();
@@ -31,7 +23,6 @@ const Treasury = () => {
 
   useEffect(() => {
     if (contract) {
-      fetchCampaigns();
       fetchTreasuryBalance();
     }
   }, [address, contract]);
