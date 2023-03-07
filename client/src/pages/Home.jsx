@@ -28,7 +28,7 @@ const Home = () => {
     <>
       <div>
         <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
-          Investing in Global Goals. <br /> Together.
+          Investing in Global Goals. Together.
         </h4>
 
         <div className="mt-[20px]">
