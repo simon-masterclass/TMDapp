@@ -32,7 +32,10 @@ const Home = () => {
         </h4>
 
         <div className="mt-[20px]">
-          <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify"></p>
+          <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
+            HURA! The Zero Army is a decentralized platform that allows anyone
+            to "invest" in the global goals.
+          </p>
         </div>
       </div>
     </>
