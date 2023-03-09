@@ -29,14 +29,14 @@ const Home = () => {
     <>
       <div>
         <div className="flex items-center justify-center w-full p-12">
-          <div className="rounded-lg">
+          <div className="rounded-full bg-[#2c2f32]">
             <img
-              className="rounded-full w-[300px] h-[300px] object-cover p-7"
+              className="rounded-full w-[333px] h-[333px] object-cover p-7"
               src={ZeroArmyWhite}
               alt="Zero Army"></img>{" "}
           </div>
-          <div className="flex-col items-center">
-            <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase p-0">
+          <div className="flex-col items-center bg-[#2c2f32] rounded-lg justify-center">
+            <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase p-3">
               Investing in Global Goals. Together.
             </h4>
           </div>
