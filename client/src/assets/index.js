@@ -20,6 +20,7 @@ import zero from "./zero.svg";
 import colorcoins from "./colorcoins.svg";
 import home from "./home.svg";
 import target from "./target.svg";
+import ZeroArmyWhite from "./ZeroArmyWhite.png";
 
 export {
   tagType,
@@ -42,4 +43,5 @@ export {
   colorcoins,
   home,
   target,
+  ZeroArmyWhite,
 };
