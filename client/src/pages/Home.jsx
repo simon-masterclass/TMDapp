@@ -4,26 +4,11 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { logo, ZeroArmyWhite } from "../assets";
 
-import { DisplayCampaigns } from "../components";
 import { useStateContext } from "../context";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [campaigns, setCampaigns] = useState([]);
   const { state } = useLocation();
-
-  const { address, contract, getCampaigns } = useStateContext();
-
-  const fetchCampaigns = async () => {
-    setIsLoading(true);
-    const data = await getCampaigns();
-    setCampaigns(data);
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    if (contract) fetchCampaigns();
-  }, [address, contract]);
 
   return (
     <>
@@ -45,7 +30,16 @@ const Home = () => {
           <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
             HURA! The Zero Army is a decentralized donation platform that allows
             anyone to "invest" in the global goals. Earn tokens connected to the
-            outcome of global goal campaigns.
+            outcome of global goal campaigns. Tokens also have utility value
+            within the Zero Army ecosystem**. <br /> These tokens will
+            eventually be integrated into a special Zero Army Metaverse
+            (MetaSERVE) simulation. The MetaSERVE will feature real-time
+            visualizations of the impact that donations have on the global goals
+            within an interactive videogame-like environment. <br /> <br />
+            ** NOTE: The Zero Army maintains a "zero expectations" policy with
+            respect to Returns On Donations (ROD). The Zero Army is a DONATION
+            PLATFORM first and foremost. Tokens are a bonus. Donors should
+            donate with zero expecations of financial gain.
             <br />
             <br /> <b>Disclaimer:</b> <br />
             Nothing on this site constitutes professional and/or financial
