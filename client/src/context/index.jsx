@@ -18,7 +18,7 @@ const StateContext = createContext();
 
 // const { MerkleTree } = require("merkletreejs");
 import keccak256 from "keccak256";
-import { whitelist } from "./whitelist.js";
+import { whitelist } from "../utils/whitelist.js";
 
 const leafNodes = whitelist.map((addr) => keccak256(addr));
 const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
