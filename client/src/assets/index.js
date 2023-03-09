@@ -14,7 +14,7 @@ import menu from "./menu.svg";
 import money from "./money.svg";
 import loader from "./loader.svg";
 import thirdweb from "./world.svg";
-import zarmy100x100 from "./zarmy100x100.png";
+import zarmy100x100 from "./army100.png";
 import zarmy50x50 from "./zarmy50x50.png";
 import zero from "./zero.svg";
 import colorcoins from "./colorcoins.svg";
