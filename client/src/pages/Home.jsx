@@ -29,13 +29,14 @@ const Home = () => {
         <div className="mt-[20px]">
           <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
             HURA! The Zero Army is a decentralized donation platform that allows
-            anyone to "invest" in the Global Goals. Earn tokens connected to the
-            outcome of Global Goal campaigns. Tokens also have utility value
-            within the Zero Army ecosystem**. <br /> These tokens will
-            eventually be integrated into a special Zero Army Metaverse
-            (MetaSERVE) simulation. The MetaSERVE will feature real-time
-            visualizations of the impact that donations have on the Global Goals
-            within an interactive videogame-like environment. <br /> <br />
+            anyone to "invest" in the Global Goals. Donors earn tokens connected
+            to the outcome of Global Goal campaigns with every donation. Tokens
+            also have utility value within the Zero Army ecosystem**. <br />{" "}
+            These tokens will eventually be integrated into a special Zero Army
+            Metaverse (MetaSERVE) simulation. The MetaSERVE will feature
+            real-time visualizations of the impact that donations have on the
+            Global Goals in an interactive videogame-like environment. <br />{" "}
+            <br />
             ** NOTE: The Zero Army maintains a "zero expectations" policy with
             respect to Returns On Donations (ROD). The Zero Army is a DONATION
             PLATFORM first and foremost. Tokens are a bonus. Donors should

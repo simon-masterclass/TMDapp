@@ -179,7 +179,7 @@ const CampaignDetails = () => {
                 </h4>
                 <p className="mt-[20px] font-epilogue font-normal leading-[22px] text-[#808191]">
                   Your contribution will help us move the project forward,
-                  getting us one step closer to our goal - Z3R0 Stunting.
+                  getting us one step closer to our goal - Zero by 2030!
                 </p>
               </div>
 
