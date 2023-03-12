@@ -28,7 +28,7 @@ const Home = () => {
         </div>
         <div className="mt-[20px]">
           <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
-            HURA! The Zero Army is a decentralized donation platform that allows
+            The Zero Army is a decentralized donation platform that allows
             anyone to "invest" in the Global Goals. Donors earn tokens connected
             to the outcome of Global Goal campaigns with every donation. Tokens
             also have utility value within the Zero Army ecosystem**. <br />{" "}
